@@ -1,5 +1,5 @@
 var app = new Vue ({
-  el: '#root',
+  el: '#app',
   data: {
     api_Key: '',
     lang: 'it-IT',
@@ -7,7 +7,7 @@ var app = new Vue ({
     films: [],
 
   },
-  
+
   methods: {
     searchMovie() {
       axios
