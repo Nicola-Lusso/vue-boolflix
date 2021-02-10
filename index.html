@@ -12,18 +12,20 @@
   </head>
   <body>
     <header>
-      <div id="app" class="container"><span>Ricerca film</span>
+      <div id="app" class="container">
+      <button @click="searchMovie" type="button" name="button">Trova</button>
         <input type="text" v-model= 'query' @keyup.enter="searchMovie">
+        <span>Ricerca film</span>
       </div>
     </header>
 
     <div id="app" class="film-container container">
-      <div  class="film">
-        <img :src="">
-        <h3>{{}}</h3>
-        <span class="titolo">{{}}</span>
-        <span class="lingua">{{}}</span>
-        <span class="voto">{{}}</span>
+      <div v-for="film in films" class="film">
+        <!-- <img :src="film.poster_path">
+        <h3>{{}}</h3> -->
+        <span class="titolo">{{{film.original_title}}</span>
+        <span class="lingua">{{film.original_language}}</span>
+        <span class="voto">{{film.vote_average}}</span>
       </div>
     </div>
 

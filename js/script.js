@@ -1,14 +1,13 @@
 var app = new Vue ({
   el: '#root',
   data: {
-    apiKey: '',
+    api_Key: '',
     lang: 'it-IT',
     query: '',
+    films: [],
 
   },
-  mounted() {
-
-  },
+  
   methods: {
     searchMovie() {
       axios
@@ -20,8 +19,9 @@ var app = new Vue ({
         }
       })
       .then((result) => {
-        this.results = result.data.results;
-      });
+        this.film = result.data.results;
+        console.log(result.data.results);
+      })
       .catch((error) => alert('Errore'));
     }
   }

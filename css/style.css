@@ -22,10 +22,15 @@ header {
   background: gold;
 }
 
+header button{
+  float: right;
+  margin-top: 50px;
+}
+
 header span{
   float: right;
   margin-top: 50px;
-  margin-right: 50px;
+  /* margin-right: 50px; */
   padding-left: 10px;
 }
 
