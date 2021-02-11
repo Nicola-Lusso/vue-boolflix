@@ -11,22 +11,26 @@
     <title>Boolflix</title>
   </head>
   <body>
-    <header>
-      <div id="app" class="container">
-      <button @click="searchMovie" type="button" name="button">Trova</button>
-        <input type="text" v-model= 'query' @keyup.enter="searchMovie">
-        <span>Ricerca film</span>
-      </div>
-    </header>
+    <div id="app">
+      <header>
+        <div  class="container">
+          <img src="img/NowTv.png" alt="">
+          <button @click="searchMovie" type="button" name="button">Trova</button>
+          <input type="text" v-model="query" @keyup.enter="searchMovie">
+          <span>Ricerca film</span>
+        </div>
+      </header>
 
-    <div id="app" class="film-container container">
-      <div v-for="film in films" class="film">
-        <!-- <img :src="film.poster_path">
-        <h3>{{}}</h3> -->
-        <h3 class="titolo">{{{film.original_title}}</h3>
-        <h3 class="lingua">{{film.original_language}}</h3>
-        <h3 class="voto">{{film.vote_average}}</h3>
+      <div class="film-container ">
+        <div v-for="film in films" class="film">
+          <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/w500/' + film.poster_path" alt="movie_poster">
+          <img v-else src="img/1917.jpg" alt="">
+          <h3>{{ film.title }}</h3>
+          <div>{{ '(' + film.original_title + ')'}}</div>
+          <div class="voto">{{film.vote_average}}</div>
+        </div>
       </div>
+
     </div>
 
 

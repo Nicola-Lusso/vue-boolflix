@@ -1,9 +1,8 @@
 var app = new Vue ({
   el: '#app',
   data: {
-    api_Key: '',
     lang: 'it-IT',
-    query: '',
+    query: "",
     films: [],
 
   },
@@ -19,7 +18,7 @@ var app = new Vue ({
         }
       })
       .then((result) => {
-        this.film = result.data.results;
+        this.films = result.data.results;
         console.log(result.data.results);
       })
       .catch((error) => alert('Errore'));

@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-  width: 1070px;
+  width: 1300px;
   height: 100%;
   margin: 0 auto;
 }
@@ -22,22 +22,32 @@ header {
   background: gold;
 }
 
+header img{
+  float: left;
+  width: 190px;
+  margin-top: -50px;
+}
+
 header button{
   float: right;
-  margin-top: 50px;
+  margin-top: 49px;
+  width: 50px;
+  height: 20px;
 }
 
 header span{
   float: right;
-  margin-top: 50px;
+  margin-top: 44px;
+  font-size: 20px;
   /* margin-right: 50px; */
-  padding-left: 10px;
+  padding-right: 10px;
 }
 
 header input{
   float: right;
   margin-top: 50px;
   padding-right: 10px;
+  margin-right: 5px;
 }
 
 .film-container {
@@ -53,10 +63,14 @@ header input{
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  flex-basis: 200px;
+  flex-basis: calc(100% / 6);
   padding: 20px;
   margin: 10px 20px;
-  height: 360px;
+  /* height: 380px; */
   background: darkgray;
   text-align: center;
+}
+
+.film img{
+  width: 180px;
 }
