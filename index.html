@@ -6,6 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Boolflix</title>
@@ -14,22 +15,49 @@
     <div id="app">
       <header>
         <div  class="container">
-          <img src="img/NowTv.png" alt="">
-          <button @click="searchMovie" type="button" name="button">Trova</button>
-          <input type="text" v-model="query" @keyup.enter="searchMovie">
+          <!-- <img src="img/NowTv.png" alt=""> -->
+          <button @click="searchMovieTV" type="button" name="button">Trova</button>
+          <input type="text" v-model="query" placeholder="Cerca film..." @keyup.enter="searchMovieTV">
           <span>Ricerca film</span>
         </div>
       </header>
 
       <div class="film-container ">
+        <!-- Inizio Film -->
         <div v-for="film in films" class="film">
-          <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/w500/' + film.poster_path" alt="movie_poster">
-          <img v-else src="img/1917.jpg" alt="">
+          <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/w500/' + film.poster_path" alt="film_poster">
+          <img v-else src="img/1917.jpg" class="cover">
           <h3>{{ film.title }}</h3>
           <div>{{ '(' + film.original_title + ')'}}</div>
-          <div class="voto">{{film.vote_average}}</div>
+          <div class="language">{{ film.original_language }} </div>
+          <div class="">
+            <img :src="'img/' + film.original_language + '.png'" alt="" v-if="flag.includes(film.original_language)" class="flags">
+           <img :src="film.original_language" alt="" v-else>
+          </div>
+          <div v-for='(star, index) in 5' class="voto">
+            <i v-if="index < Math.round(film.vote_average / 2)" class="fas fa-star"></i>
+            <i v-else class="far fa-star"></i>
+          </div>
+        </div>
+        <!-- /Film -->
+        <!-- serie tv -->
+      <div class="film" v-for="serieTv in seriesTv">
+        <img v-if="serieTv.poster_path != null" :src="'https://image.tmdb.org/t/p/w500/' + serieTv.poster_path" alt="serieTv_poster">
+        <img v-else src="img/1917.jpg" class="cover">
+        <h3>{{serieTv.title }}</h3>
+        <div>{{ '(' + serieTv.original_title + ')'}}</div>
+        <div class="language"> {{ serieTv.original_language }}</div>
+        <img :src="'img/' + serieTv.original_language + '.png'" alt="" v-if="flag.includes(serieTv.original_language)" class="flags">
+        <img :src="serieTv.original_language" alt="" v-else>
+        <div v-for='(star, index) in 5' class="voto">
+          <i v-if="index < Math.round(SerieTV.vote_average / 2)" class="fas fa-star"></i>
+          <i v-else class="far fa-star"></i>
         </div>
       </div>
+      <!-- / serie tv -->
+      </div>
+
+
 
     </div>
 
