@@ -15,7 +15,7 @@
     <div id="app">
       <header>
         <div  class="container">
-          <!-- <img src="img/NowTv.png" alt=""> -->
+          <img src="https://www.nowtv.it/etc.clientlibs/nowtv/clientlibs/clientlib-base/resources/img/common/logo_NOW_TV_footer.svg" alt="">
           <button @click="searchMovieTV" type="button" name="button">Trova</button>
           <input type="text" v-model="query" placeholder="Cerca film..." @keyup.enter="searchMovieTV">
           <span>Ricerca film</span>
@@ -24,20 +24,24 @@
 
       <div class="film-container ">
         <!-- Inizio Film -->
-        <div v-for="film in films" class="film">
+        <div v-for="film in films" class="film" >
           <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/w500/' + film.poster_path" alt="film_poster">
           <img v-else src="img/1917.jpg" class="cover">
-          <h3>{{ film.title }}</h3>
-          <div>{{ '(' + film.original_title + ')'}}</div>
-          <div class="language">{{ film.original_language }} </div>
-          <div class="">
-            <img :src="'img/' + film.original_language + '.png'" alt="" v-if="flag.includes(film.original_language)" class="flags">
-           <img :src="film.original_language" alt="" v-else>
+          <div class="info-hidden">
+            <h3>{{ film.title }}</h3>
+            <h3>{{ '(' + film.original_title + ')'}}</h3>
+            <div class="language">{{ film.original_language }} </div>
+            <div class="">
+              <img :src="'img/' + film.original_language + '.png'" alt="" v-if="flag.includes(film.original_language)" class="flags">
+             <img :src="film.original_language" alt="" v-else>
+            </div>
+            <div v-for='(star, index) in 5' class="voto">
+              <i v-if="index < Math.round(film.vote_average / 2)" class="fas fa-star"></i>
+              <i v-else class="far fa-star"></i>
+            </div>
+            <p class="overview">{{ film.overview }}</p>
           </div>
-          <div v-for='(star, index) in 5' class="voto">
-            <i v-if="index < Math.round(film.vote_average / 2)" class="fas fa-star"></i>
-            <i v-else class="far fa-star"></i>
-          </div>
+
         </div>
         <!-- /Film -->
         <!-- serie tv -->
